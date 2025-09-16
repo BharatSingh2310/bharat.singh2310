@@ -71,4 +71,23 @@ class RiskCalculatorTest {
             JP_MORGAN_POSITION_1.initialValue() + JP_MORGAN_POSITION_2.initialValue());
     Assertions.assertEquals(expectedPnl, memberPnl, DELTA);
   }
+
+  @Test
+  void calculateMarketRisk(){
+    RiskCalculator riskCalculator = new RiskCalculator(positionManager, priceRepository,
+            referenceDataRepository);
+    Mockito.when(positionManager.getPositionsForMember(JP_MORGAN.memberName()))
+            .thenReturn(List.of(JP_MORGAN_POSITION_1, JP_MORGAN_POSITION_3));
+    Mockito.when(priceRepository.getPrice(IBM_STOCK.instrumentName()))
+            .thenReturn(Optional.of(100.0));
+    Mockito.when(priceRepository.getPrice(TSLA_STOCK.instrumentName()))
+            .thenReturn(Optional.of(100.0));
+    Mockito.when(referenceDataRepository.getInstrument(IBM_STOCK.instrumentName()))
+            .thenReturn(Optional.of(IBM_STOCK));
+    Mockito.when(referenceDataRepository.getInstrument(TSLA_STOCK.instrumentName()))
+            .thenReturn(Optional.of(TSLA_STOCK));
+
+    double  marketRisk =  riskCalculator.calculateMarketRisk(JP_MORGAN.memberName());
+    Assertions.assertEquals(0,marketRisk,DELTA);
+  }
 }

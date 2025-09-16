@@ -21,12 +21,14 @@ public class App {
   private final RiskCalculator riskCalculator = new RiskCalculator(positionManager,
       priceRepository, referenceDataRepository);
 
-  public App() {
-    start();
-  }
+  private static App app;
 
-  private void start() {
-    // Do nothing for now
+
+
+  public static App getInstance(){
+    if(app==null)
+       app = new App();
+    return app;
   }
 
   public PositionApi getPositionApi() {

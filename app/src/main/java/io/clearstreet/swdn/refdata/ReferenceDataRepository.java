@@ -43,4 +43,11 @@ public class ReferenceDataRepository implements ReferenceDataApi {
   public Optional<Member> getMember(String memberName) {
     return Optional.ofNullable(members.get(memberName));
   }
+
+  public Map<String, Account> getAccounts(){return accounts;}
+
+  public Map<String, Member> getMembers(){return members;}
+
+  public Map<String, Instrument> getInstruments(){return instruments;}
+
 }

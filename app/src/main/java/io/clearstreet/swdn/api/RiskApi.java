@@ -26,4 +26,12 @@ public interface RiskApi {
    * @return the margin for the member
    */
   double calculateMemberMargin(String memberName);
+
+  /**
+   * Calculate the market risk for a member.
+   *
+   * @param memberName member to calculate for
+   * @return the market risk for the member
+   */
+  double calculateMarketRisk(String memberName);
 }

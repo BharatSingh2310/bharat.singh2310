@@ -101,7 +101,7 @@ class AppTest {
     double quantity = 200.0;
     double price = 99.0;
     {
-      App app = new App();
+      App app = App.getInstance();
       Assertions.assertTrue(app.getReferenceDataApi().enterInstrument(IBM_STOCK));
       Assertions.assertTrue(app.getReferenceDataApi().enterMember(JP_MORGAN));
       Assertions.assertTrue(app.getReferenceDataApi().enterAccount(JP_MORGAN_ACCOUNT_1));
@@ -119,7 +119,7 @@ class AppTest {
 
     // When
     // Simulate a crash
-    App app = new App();
+    App app = App.getInstance();
     double accountPnl = app.getRiskApi().calculateAccountPnl(JP_MORGAN_ACCOUNT_1.accountName());
     List<Position> positions = app.getPositionApi()
         .getPositionsForAccount(JP_MORGAN_ACCOUNT_1.accountName());
